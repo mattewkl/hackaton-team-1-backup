@@ -28,9 +28,12 @@
 
 ### Описание процесса игры со скриншотами
 ## Старт
-Главный экран игры: <image src="/markdown_imgs/img_1.jpg" alt="Родитель и ребенок на старте">
-Выбор сложности: <image src="/markdown_imgs/img_2.jpg" alt="Выбор сложности">
-Старт игры: <image src="/markdown_imgs/img_3.jpg" alt="Родитель и ребенок на старте">
+Главный экран игры: 
+<image src="/markdown_imgs/img_1.jpg" alt="Родитель и ребенок на старте">
+Выбор сложности: 
+<image src="/markdown_imgs/img_2.jpg" alt="Выбор сложности">
+Старт игры: 
+<image src="/markdown_imgs/img_3.jpg" alt="Родитель и ребенок на старте">
 Процесс игры
 <image src="/markdown_imgs/img_1.jpg" alt="Родитель и ребенок на старте">
 Можно поменять сложность даже после начала игры, если вы вдруг поняли, что вам сейчас слишком сложно: http://joxi.ru/gmvDxgvt0X8kGA
