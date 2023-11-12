@@ -30,8 +30,10 @@
 ## Старт
 Главный экран игры: 
 <image src="/markdown_imgs/img_1.jpg" alt="Родитель и ребенок на старте">
+##
 Выбор сложности: 
 <image src="/markdown_imgs/img_2.jpg" alt="Выбор сложности">
+##
 Старт игры: 
 <image src="/markdown_imgs/img_3.jpg" alt="Родитель и ребенок на старте">
 Процесс игры
