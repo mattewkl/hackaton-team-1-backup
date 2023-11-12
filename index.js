@@ -6,7 +6,7 @@ function Child() {
    this.cell = maze.initCell;
 
    this.draw = () => {
-      circle(this.cell.pos.x, this.cell.pos.y, 5);
+      drawBody(this.cell.pos.x, this.cell.pos.y, 2, 1, maze.cellPixelSize * 0.3, true);
    }
 }
 
@@ -14,9 +14,10 @@ function Child() {
 function Parent() {
    this.cell = maze.endCell;
    this.prevCell = this.cell;
+   this.moveSide = 2;
 
    // Скорость ходьбы родителя. 10 означает одна клетка за 10 кадров
-   this.subStepsForOneMove = 10;
+   this.subStepsForOneMove = 20;
 
    this.subSteps = this.subStepsForOneMove;
 
@@ -25,6 +26,7 @@ function Parent() {
       let tryCell = this.cell.connected[side];
 
       if (tryCell !== 0 && this.subSteps === this.subStepsForOneMove) {
+         this.moveSide = side;
          this.prevCell = this.cell;
          this.cell = tryCell;
          this.subSteps = 0;
@@ -41,7 +43,157 @@ function Parent() {
          this.subSteps++;
       }
 
-      circle(lerpPoint.x, lerpPoint.y, 10);
+      drawBody(lerpPoint.x, lerpPoint.y, this.moveSide, amt, maze.cellPixelSize * 0.4);
+   }
+}
+
+function drawBody(x, y, moveSide, amt, size, isChild = false) {
+   let a = map(amt, 0, 1, 0, PI * 4);
+   let sina = sin(a) * 3;
+   let mult = 1;
+   if (isChild) mult = 1.5;
+   let cosas = cos(a);
+   let cosa = map(cosas, 1, -1, 0.5, 1) * 3;
+   if (isChild) {
+      sina = sin(frameCount / 5);
+   }
+   else {
+      sina = sin(10 + frameCount / 5) / 2;
+   }
+   x -= sina;
+   let rand = map(mult, 1, 1.5, randomSeed, 10000 - randomSeed);
+   let bodyCol = lerpColor(color("rgb(239,207,158)"), color("rgb(131,95,42)"), rand / 10000);
+   let sleevesCol = lerpColor(color("rgb(67,141,255)"), color("rgb(130,24,133)"), rand / 10000);
+   let shirtCol = lerpColor(color("rgb(61,127,231)"), color("rgb(120,22,124)"), rand / 10000);
+   let pantsCol = lerpColor(color("rgb(54,130,196)"), color("rgb(12,32,58)"), rand / 10000);
+   let shoesCol = lerpColor(color("rgb(59,49,20)"), color("rgb(40,34,3)"), rand / 10000);
+
+   stroke(bodyCol);
+   strokeWeight(size * 0.3);
+   let shX, shY;
+   if (moveSide % 2 !== 0) {
+      shX = x - sina;
+      shY = y - size + cosa;
+   }
+   else {
+      shX = x - sina / 6;
+      shY = y - size + cosa;
+   }
+
+   //body
+   stroke(shirtCol);
+   line(x, y, shX, shY);
+   strokeWeight(size * 0.2 * mult);
+
+   //legs
+   let legRX, legRY, legLX, legLY;
+   if (moveSide % 2 !== 0) {
+      let step = cosas;
+      legRX = x + sina + size * 0.2 * step;
+      legRY = y + size * 0.5 + cosa;
+      legLX = x + sina - size * 0.2 * step;
+      legLY = y + size * 0.5 + cosa;
+
+   }
+   else {
+      let amt2 = map(amt, 0.9, 1, 0.5, 1, true);
+      let step = map(cosas, -1, 1, amt2, 1);
+      let lStep = map(cosas, -1, 1, 1, amt2);
+      legRX = x + sina + size * 0.12 * mult;
+      legRY = y + size * 0.5 * lStep + cosa;
+      legLX = x + sina - size * 0.12 * mult;
+      legLY = y + size * 0.5 * step + cosa;
+   }
+   stroke(shoesCol);
+   strokeCap(ROUND);
+   strokeWeight(size * 0.17 * mult);
+   line(x - size * 0.05, y, legLX, legLY);
+   line(x + size * 0.05, y, legRX, legRY);
+   stroke(pantsCol);
+   strokeWeight(size * 0.2 * mult);
+   line(x - size * 0.05, y, x + size * 0.05, y);
+   strokeCap(SQUARE);
+   line(x - size * 0.05, y, legLX, legLY);
+   line(x + size * 0.05, y, legRX, legRY);
+
+   //arms
+   let armRX, armRY, armLX, armLY;
+   if (moveSide % 2 !== 0) {
+      let step = cosas;
+      armRX = x + sina + size * 0.3 * step * mult;
+      armRY = y - size * 0.1 + cosa;
+      armLX = x + sina - size * 0.3 * step * mult;
+      armLY = y - size * 0.1 + cosa;
+      stroke(bodyCol);
+      strokeCap(ROUND);
+      strokeWeight(size * 0.13 * mult);
+      line(shX - size * 0.05, shY + size * 0.55, armLX, armLY);
+      line(shX + size * 0.05, shY + size * 0.55, armRX, armRY);
+      stroke(sleevesCol);
+      strokeWeight(size * 0.17 * mult);
+      line(shX - size * 0.05, shY + size * 0.55, shX + size * 0.05, shY + size * 0.55);
+      strokeCap(SQUARE);
+      line(shX - size * 0.05, shY + size * 0.55, armLX, armLY);
+      line(shX + size * 0.05, shY + size * 0.55, armRX, armRY);
+   }
+   else {
+      let amt2 = map(amt, 0.9, 1, 0.5, 1, true);
+      let step = map(cosas, -1, 1, amt2, 3);
+      let lStep = map(cosas, -1, 1, 3, amt2);
+      armRX = x - sina - size * 0.2 * mult;
+      armRY = y - size * 0.15 + cosa * lStep;
+      armLX = x - sina + size * 0.2 * mult;
+      armLY = y - size * 0.15 + cosa * step;
+      stroke(bodyCol);
+      strokeCap(ROUND);
+      strokeWeight(size * 0.13 * mult);
+      line(shX + size * 0.15, shY + size * 0.55, armLX, armLY);
+      line(shX - size * 0.15, shY + size * 0.55, armRX, armRY);
+      stroke(sleevesCol);
+      strokeWeight(size * 0.17 * mult);
+      line(shX + size * 0.15, shY + size * 0.55, shX - size * 0.15, shY + size * 0.55);
+      strokeCap(SQUARE);
+      line(shX + size * 0.15, shY + size * 0.55, armLX, armLY);
+      line(shX - size * 0.15, shY + size * 0.55, armRX, armRY);
+   }
+
+   //head
+   noStroke();
+   fill(bodyCol);
+   circle(shX, shY, size);
+
+   if (moveSide !== 0) {
+      stroke(shoesCol);
+      strokeWeight(size * 0.05);
+      strokeCap(ROUND);
+      line(shX + size * 0.15, shY + size * 0.05, shX + size * 0.15, shY - size * 0.1);
+      line(shX - size * 0.15, shY + size * 0.05, shX - size * 0.15, shY - size * 0.1);
+
+      arc(shX, shY, size * 0.6, size * 0.6, PI * 0.3, PI * 0.7)
+   }
+
+   if (isChild) {
+      let capCol = lerpColor(color("rgb(101,112,255)"), color("rgb(255,95,95)"), rand / 10000);
+      let capEndCol = lerpColor(color("rgb(85,110,225)"), color("rgb(227,87,87)"), rand / 10000);
+      let fanCol = lerpColor(color("rgb(85,110,225)"), color("rgb(227,87,87)"), 1 - rand / 10000);
+      let fan2Col = lerpColor(color("rgb(101,112,255)"), color("rgb(255,95,95)"), 1 - rand / 10000);
+      stroke(capCol);
+      strokeWeight(size * 0.15);
+      line(shX - size * 0.55, shY - size * 0.2, shX - size * 0.3, shY - size * 0.22);
+      line(shX - size * 0.3, shY - size * 0.22, shX + size * 0.27, shY - size * 0.33);
+      noStroke();
+      fill(capEndCol);
+      arc(shX, shY - size * 0.22, size * 0.95, size * 0.9, PI * 1.03, PI * 1.97, CHORD);
+
+      stroke(color("rgb(228,229,245)"));
+      strokeWeight(size * 0.1);
+      line(shX - size * 0.05, shY - size * 0.85, shX - size * 0.05, shY - size * 0.65);
+      noStroke();
+
+      fill(fan2Col);
+      arc(shX - size * 0.15, shY - size * 0.85, size * 0.3, size * 0.15, 0, TWO_PI);
+      fill(fanCol);
+      arc(shX + size * 0.05, shY - size * 0.85, size * 0.3, size * 0.15, 0, TWO_PI);
    }
 }
 
@@ -228,14 +380,21 @@ let globalCellID = 0;
 function drawFlower(x, y, r) {
    push()
    let hr = r * 0.75;
+   let n = noise(x, y);
+   let a = map(n, 0, 1, 0, PI);
+   let nr = map(n, 0, 1, 0.75, 1);
+
    noStroke();
    fill(0, 150, 0);
-   circle(x, y, r * 1.5);
-   fill(250, 200, 250);
-   circle(x + hr, y, r);
-   circle(x - hr, y, r);
-   circle(x, y + hr, r);
-   circle(x, y - hr, r);
+   circle(x, y, r * 1.5 * nr);
+   let flowerCol = lerpColor(color("rgb(255,185,228)"), color("rgb(219,166,252)"), n);
+   for (let i = 0; i < 5; i++) {
+      fill(flowerCol);
+      let a2 = map(i, 0, 5, 0, TWO_PI) + a;
+      let cosa = cos(a2) * hr;
+      let sina = sin(a2) * hr;
+      circle(x + sina, y + cosa, r * nr);
+   }
    pop()
 }
 
@@ -281,7 +440,7 @@ function Cell(x, y) {
       push();
       let size = maze.cellPixelSize;
       let halfSize = size / 2;
-      stroke(0, 170, 0);
+      stroke(70, 170, 0);
       strokeWeight(size / 2);
       strokeCap(ROUND);
       noFill();
@@ -304,8 +463,11 @@ function Cell(x, y) {
 }
 
 let difficulty = 0;
+let randomSeed;
 
 function play() {
+   randomSeed = round(random(10000));
+   console.log(randomSeed);
    // это собственно частота кадров
    frameRate(20);
    // это внутренняя переменная p5.js, считает кол-во кадров
@@ -438,7 +600,7 @@ function showStats() {
    statTime.innerText = `${Minutes}:${Seconds}`
 }
 
-function hideMenuButton () {
+function hideMenuButton() {
    MenuButton.classList.add('no-show')
    MenuButton.classList.remove('show')
    MenuButton.removeEventListener('click', openMenu)
@@ -473,7 +635,7 @@ function handleRestartFull() {
    maze.pathShown = true;
 }
 
-function handleRestartWin () {
+function handleRestartWin() {
    WinWindow.classList.add('no-show')
    InfoFrontPage.classList.remove('no-show')
 }
