@@ -26,15 +26,14 @@
             <div class="window-text-wrapper">
                 <p class="no-m no-p window-text_sm">Если вы играете с компьютера: используйте для управления стрелки → ←
                     ↑ ↓ на вашей клавиатуре</p>
-                <p class="no-m no-p window-text_sm">Если вы играете с планшета или телефона: используйте для управления
-                    стрелки → ← ↑ ↓ в нижней части экрана</p>
+                <p class="no-m no-p window-text_sm">Сложность отличается размером лабиринта, по умолчанию стоит лёгкая</p>
             </div>
             <div class="dropdown">
-                <button class="dropbtn">Dropdown</button>
+                <button class="dropbtn">Лёгкая</button>
                 <div class="dropdown-content">
-                  <a href="#" id="dif-easy">Link 1</a>
-                  <a href="#" id="dif-mid">Link 2</a>
-                  <a href="#" id="dif-hard">Link 3</a>
+                  <a href="#" class="dropdown-option dif-easy" >Лёгкая</a>
+                  <a href="#" class="dropdown-option dif-mid">Средная</a>
+                  <a href="#" class="dropdown-option dif-hard">Тяжелая</a>
                 </div>
             </div>
             <div class="ready-button-wrapper">
@@ -46,10 +45,27 @@
             <button class="no-m no-p close-button close-button_menu"></button>
             <h4 class="no-m no-p window-title window-title_text-left">Меню настроек</h4>
             <div class="window-text-wrapper">
+							<div class="icons-wrapper">
+                <i class="no-m no-p parents-icon parents-icon_1"></i>
+                <i class="no-m no-p parents-icon parents-icon_2"></i>
+                <i class="no-m no-p parents-icon parents-icon_3"></i>
+                <i class="no-m no-p parents-icon parents-icon_4"></i>
+            </div>
+							<p class="no-m no-p window-text_sm">
+								Для рестарта игры с этим же лабиринтом нажмите “перезапуск”, для старта новой игры с новым
+								лабиринтом нажмите “начать заново”
+						</p>
                 <p class="no-m no-p window-text_sm">
-                    Для рестарта игры с этим же лабиринтом нажмите “перезапуск”, для старта новой игры с новым
-                    лабиринтом нажмите “начать заново”
+									Здесь можно отредактировать сложность игры. Сложность отличается размером лабиринта.
                 </p>
+            </div>
+            <div class="dropdown">
+                <button class="dropbtn dropbtn-menu">Легкая</button>
+                <div class="dropdown-content">
+                  <a href="#" class="dropdown-option dif-easy-menu" >Легкая</a>
+                  <a href="#" class="dropdown-option dif-mid-menu">Средная</a>
+                  <a href="#" class="dropdown-option dif-hard-menu">Тяжелая</a>
+                </div>
             </div>
             <div class="two-button-container">
                 <button class="base-button" id="button-restart-current">

@@ -478,11 +478,43 @@ function handleRestartWin () {
    InfoFrontPage.classList.remove('no-show')
 }
 
+
+const dropdownEasy = document.querySelector('.dif-easy')
+const dropdownMid = document.querySelector('.dif-mid')
+const dropdownHard  = document.querySelector('.dif-hard')
+const dropdownEasyMenu = document.querySelector('.dif-easy-menu')
+const dropdownMidMenu = document.querySelector('.dif-mid-menu')
+const dropdownHardMenu  = document.querySelector('.dif-hard-menu')
+const dropdownButton = document.querySelector('.dropbtn')
+const dropdownButtonMenu = document.querySelector('.dropbtn-menu')
+
+function changeDifficultyEasy() {
+   dropdownButton.innerText = dropdownEasy.innerText
+   dropdownButtonMenu.innerText = dropdownEasy.innerText
+   difficulty = 0;
+}
+function changeDifficultyMid() {
+   dropdownButton.innerText = dropdownMid.innerText
+   dropdownButtonMenu.innerText = dropdownMid.innerText
+   difficulty = 1;
+}
+function changeDifficultyHard() {
+   dropdownButtonMenu.innerText = dropdownHard.innerText
+   dropdownButton.innerText = dropdownHard.innerText
+   difficulty = 2;
+}
+
 function addListenersOnMenuButtons() {
    RestartCurrentButton.addEventListener('click', handleRestartCurrent)
    RestartFullButton.addEventListener('click', handleRestartFull)
    AfterWinRestartButton.addEventListener('click', handleRestartWin)
    CloseMenuButton.addEventListener('click', closeMenu)
+   dropdownEasy.addEventListener('click', changeDifficultyEasy)
+   dropdownMid.addEventListener('click', changeDifficultyMid)
+   dropdownHard.addEventListener('click', changeDifficultyHard)
+   dropdownEasyMenu.addEventListener('click', changeDifficultyEasy)
+   dropdownMidMenu.addEventListener('click', changeDifficultyMid)
+   dropdownHardMenu.addEventListener('click', changeDifficultyHard)
 }
 
 // объявление переменных связанных с DOM
@@ -501,4 +533,64 @@ const InfoFrontPage = document.getElementById('info-container-front-page')
 
 ReadyButtonFrontPage.addEventListener('click', handleReadyFrontPageClick)
 addListenersOnMenuButtons();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// работа с уровнем сложности
+
+
 
