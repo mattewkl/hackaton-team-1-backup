@@ -1,0 +1,8 @@
+.bird-icon {
+    width: 50.87px;
+    height: 45px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url('../../../vendor/icons/birb.svg');
+    transform: translateX(10%);
+}

@@ -1,0 +1,12 @@
+.parents-icon {
+    width: 40px;
+    object-fit: contain;
+    aspect-ratio: 1/1;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.parents-icon_1 {background-image: url('../../../vendor/icons/parents-icon_1.svg');}
+.parents-icon_2 {background-image: url('../../../vendor/icons/parents-icon_2.svg');}
+.parents-icon_3 {background-image: url('../../../vendor/icons/parents-icon_3.svg');}
+.parents-icon_4 {background-image: url('../../../vendor/icons/parents-icon_4.svg');}

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title> Maze Game </title>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport">
+    <script src="./lib/p5.min.js"></script>
+    <link href="./style.css" rel="stylesheet">
+</head>
+
+<body class="body">
+    <main class="canvas-container">
+        <button class="no-m no-p no-show open-menu-button">
+            <p class="no-m no-p">Открыть меню</p>
+            <i class="open-menu-button__icon"></i>
+        </button>
+        <div class="info-container" id="info-container-front-page">
+            <h4 class="no-m no-p window-title">Правила семейного лабиринта</h4>
+            <div class="icons-wrapper">
+                <i class="no-m no-p parents-icon parents-icon_1"></i>
+                <i class="no-m no-p parents-icon parents-icon_2"></i>
+                <i class="no-m no-p parents-icon parents-icon_3"></i>
+                <i class="no-m no-p parents-icon parents-icon_4"></i>
+            </div>
+            <div class="window-text-wrapper">
+                <p class="no-m no-p window-text_sm">Если вы играете с компьютера: используйте для управления стрелки → ←
+                    ↑ ↓ на вашей клавиатуре</p>
+                <p class="no-m no-p window-text_sm">Если вы играете с планшета или телефона: используйте для управления
+                    стрелки → ← ↑ ↓ в нижней части экрана</p>
+            </div>
+            <div class="dropdown">
+                <button class="dropbtn">Dropdown</button>
+                <div class="dropdown-content">
+                  <a href="#" id="dif-easy">Link 1</a>
+                  <a href="#" id="dif-mid">Link 2</a>
+                  <a href="#" id="dif-hard">Link 3</a>
+                </div>
+            </div>
+            <div class="ready-button-wrapper">
+                <i class="no-m no-p bird-icon"></i>
+                <button class="base-button" id="button-start-front-page">Готов!</button>
+            </div>
+        </div>
+        <div class="info-container no-show" id="info-container-in-game-settings">
+            <button class="no-m no-p close-button close-button_menu"></button>
+            <h4 class="no-m no-p window-title window-title_text-left">Меню настроек</h4>
+            <div class="window-text-wrapper">
+                <p class="no-m no-p window-text_sm">
+                    Для рестарта игры с этим же лабиринтом нажмите “перезапуск”, для старта новой игры с новым
+                    лабиринтом нажмите “начать заново”
+                </p>
+            </div>
+            <div class="two-button-container">
+                <button class="base-button" id="button-restart-current">
+                    Перезапустить
+                </button>
+                <div class="ready-button-wrapper">
+                    <i class="no-m no-p bird-icon"></i>
+                    <button class="base-button" id="button-restart-full">Начать заново</button>
+                </div>
+            </div>
+        </div>
+        <div class="info-container info-container_win no-show" id="info-container-front-page">
+            <h4 class="no-m no-p window-title">Поздравляем!</h4>
+            <div class="window-text-wrapper">
+                <p class="no-m no-p window-text_sm">
+                    Вы отлично справились!</p>
+                <p class="no-m no-p window-text_sm">
+                    Узнать немного больше про благотворительный фонд "Найди семью" можно здесь: https://sirota.ru/</p>
+            </div>
+            <div class="window-text-wrapper">
+                <p class="no-m no-p statictic-text statictic-text_time">Время прохождения:<span></span></p>
+                <p class="no-m no-p statictic-text statictic-text_current-steps">Количество шагов:<span></span></p>
+                <p class="no-m no-p statictic-text statictic-text_ideal-steps">Идеальное количество шагов:<span></span></p>
+            </div>
+            <div class="ready-button-wrapper">
+                <i class="no-m no-p bird-icon"></i>
+                <button class="base-button" id="after-win-restart-button">Начать заново</button>
+            </div>
+        </div>
+    </main>
+    <script src="./index.js"></script>
+</body>
+
+</html>

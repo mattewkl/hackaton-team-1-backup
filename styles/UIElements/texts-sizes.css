@@ -1,0 +1,51 @@
+p, h1, h2, h3, h4 {
+    font-family: 'K2D', sans-serif;
+    color: #1B286B;
+}
+
+button {
+    font-family: 'K2D', sans-serif;
+}
+
+.page-title {
+    font-size: 24px;
+    text-transform: uppercase;
+}
+
+.page-subtitle {
+    font-size: 14px;
+}
+
+.window-title {
+    font-size: 18px;
+    line-height: 23.4px;
+    text-align: center;
+}
+
+
+.window-tiltle_text-left {
+    text-align: left;
+}
+
+.window-subtitle {
+    font-size: 24px;
+    font-weight: 500;
+
+}
+
+.window-text {
+
+}
+
+.window-text_sm {
+    font-size: 12px; 
+    line-height: 15.6px;
+    font-weight: 500;
+}
+
+.window-text_m {
+
+}
+
+
+
